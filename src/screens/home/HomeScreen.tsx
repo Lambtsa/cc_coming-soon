@@ -10,7 +10,7 @@ import { Image } from "@components/Image";
 import { SocialIcons } from "@components/SocialIcons";
 import { Container } from "@components/Container";
 import { Form } from "@components/Form";
-import { IconWrapper, NoteLink, Title, UnderBtnLink } from "./HomeScreen.styles";
+import { Title } from "./HomeScreen.styles";
 import { Button } from "@components/Button";
 import { useTranslation } from "@hooks/useTranslation";
 import { InputText } from "@components/Inputs/InputText";
@@ -141,10 +141,6 @@ export const HomeScreen = (): JSX.Element | null => {
             >
               {t({ id: "screen.login.connect" })}
             </Button>
-            <UnderBtnLink variant="TextLink" href={routes.signUp()}>
-              {t({ id: "screen.login.noAccount" })}
-              <strong>{t({ id: "commons.signUp" })}</strong>
-            </UnderBtnLink>
           </Form>
         </Container>
       </SplitSection>

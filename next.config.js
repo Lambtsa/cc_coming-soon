@@ -11,6 +11,8 @@ const config = withPlugins([], {
 
   fileExtensions: ["jpg", "jpeg", "png", "gif"],
 
+  
+
   webpack(config) {
     // config.resolve.alias["config/env"] = configPath;
 
