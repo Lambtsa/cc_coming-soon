@@ -9,10 +9,18 @@ import {
 } from "@components/SplitSection/SplitSection.styles";
 import { routes } from "@helpers/routes";
 import { useTranslation } from "@hooks/useTranslation";
+import { useRouter } from "next/router";
+import { useCallback } from "react";
 import { ContentText, Title } from "./FiveOhOh.styles";
 
 export const FiveOhOhScreen = (): JSX.Element => {
   const { t } = useTranslation();
+  const router = useRouter();
+
+  const handleOnClick = useCallback(() => {
+    router.push(routes.index())
+  }, [router]);
+
   return (
     <SectionWrapper>
       <SplitSection color="Beige">
@@ -26,7 +34,7 @@ export const FiveOhOhScreen = (): JSX.Element => {
         <Container size="mobile">
           <Title>{t({ id: "screen.fourOhFour.title" })}</Title>
           <ContentText>{t({ id: "screen.fourOhFour.subtitle" })}</ContentText>
-          <Button variant="Primary" themeColor="Beige/Red" fullwidth>
+          <Button variant="Primary" themeColor="Beige/Red" fullwidth onClick={handleOnClick}>
             {t({ id: "screen.fourOhFour.btnText" })}
           </Button>
         </Container>
