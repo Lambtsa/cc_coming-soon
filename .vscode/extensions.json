@@ -1,0 +1,25 @@
+{
+  "recommendations": [
+    "aaron-bond.better-comments",
+    "streetsidesoftware.code-spell-checker",
+    "bierner.comment-tagged-templates",
+    "ms-azuretools.vscode-docker",
+    "irongeek.vscode-env",
+    "dbaeumer.vscode-eslint",
+    "shyykoserhiy.git-autoconfig",
+    // "github.copilot",
+    "github.vscode-pull-request-github",
+    "eamodio.gitlens",
+    "graphql.vscode-graphql",
+    "visualstudioexptteam.vscodeintellicode",
+    "orta.vscode-jest",
+    "yzhang.markdown-all-in-one",
+    "pkief.material-icon-theme",
+    "eg2.vscode-npm-script",
+    "christian-kohler.npm-intellisense",
+    "esbenp.prettier-vscode",
+    // "ms-vscode-remote.remote-containers",
+    "stylelint.vscode-stylelint"
+    // "rangav.vscode-thunder-client"
+  ]
+}

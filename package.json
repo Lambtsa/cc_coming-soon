@@ -6,7 +6,13 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "format:check": "prettier --ignore-path .gitignore --check .",
+    "format:fix": "prettier --ignore-path .gitignore --write .",
+    "lint:check": "eslint --ignore-path .gitignore --ext .jsx,.js,.tsx,.ts ./",
+    "lint:fix": "npm run lint:check -- --fix",
+    "lint:tsc": "tsc --noEmit --project tsconfig.json",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@hookform/resolvers": "2.9.10",

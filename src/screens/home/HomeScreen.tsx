@@ -111,7 +111,7 @@ export const HomeScreen = (): JSX.Element | null => {
             columns={1}
             title={<Title>{t({ id: "screen.comingSoon.title" })}</Title>}
           >
-            <TextSeparator text="Connectez-vous avec vos réseaux" />
+            <TextSeparator text="Soyez au courant dès notre sortie" />
             <InputText
               type="text"
               control={control}
@@ -139,7 +139,7 @@ export const HomeScreen = (): JSX.Element | null => {
               fullwidth
               onClick={onSubmit}
             >
-              {t({ id: "screen.login.connect" })}
+              {t({ id: "screen.subscribe.btn" })}
             </Button>
           </Form>
         </Container>

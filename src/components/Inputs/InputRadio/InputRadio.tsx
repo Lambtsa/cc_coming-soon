@@ -4,7 +4,6 @@ import {
   FieldValues,
   Path,
   PathValue,
-  UnpackNestedValue,
   useController,
 } from "react-hook-form";
 import {
@@ -38,7 +37,7 @@ export const InputRadio = <
     setActive(!active);
     setValue(
       name,
-      !active as UnpackNestedValue<PathValue<TFieldValues, TName>>,
+      !active as PathValue<TFieldValues, TName>,
       { shouldValidate: true }
     );
   }, [active, name, setValue]);

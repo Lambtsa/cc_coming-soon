@@ -8,15 +8,15 @@ import translations from "@locales/fr-FR.json";
 
 export default function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   return (
-      <ThemeProvider theme={theme}>
-          <GlobalStyle />
-          <IntlProvider
-            locale="fr-FR"
-            messages={translations}
-            textComponent={Fragment}
-          >
-            <Component {...pageProps} />
-          </IntlProvider>
-        </ThemeProvider>
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
+      <IntlProvider
+        locale="fr-FR"
+        messages={translations}
+        textComponent={Fragment}
+      >
+        <Component {...pageProps} />
+      </IntlProvider>
+    </ThemeProvider>
   );
 }

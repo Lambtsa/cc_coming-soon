@@ -6,6 +6,7 @@ export const SeparationWrapper = styled.div`
   align-items: center;
   justify-content: center;
   gap: 8px;
+  margin-bottom: 16px;
 `;
 
 export const Separator = styled.span`
