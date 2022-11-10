@@ -8,6 +8,8 @@ export const BrandLink = styled(Link)`
   top: 32px;
 
   font-size: 48px;
+  min-width: 100%;
+  text-align: center;
   color: ${(props) => props.theme.colors.pewter};
   font-family: ${(props) => props.theme.fonts.oleoScript};
   &:hover {
