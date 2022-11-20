@@ -33,11 +33,12 @@ const socialMediaLinks: SocialMediaLink[] = [
 ];
 
 export const SocialIcons = ({
-  orientation = "Horizontal",
+  orientation = "horizontal",
   position,
+  alignment = "center"
 }: SocialIconsProps): JSX.Element => {
   return (
-    <SocialIconsWrapper position={position} orientation={orientation}>
+    <SocialIconsWrapper position={position} orientation={orientation} alignment={alignment}>
       {socialMediaLinks &&
         socialMediaLinks.map((icon) => (
           <Link

@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 
-export type SocialIconsPosition = "Left" | "Right";
+export type SocialIconsPosition = "left" | "right" | "center";
+export type SocialIconsAlignment = "top" | "bottom" | "center";
 
 export interface SocialMediaLink {
   name: string;
@@ -8,9 +9,10 @@ export interface SocialMediaLink {
   svg: ReactNode;
 }
 
-export type SocialOrientation = "Horizontal" | "Vertical";
+export type SocialOrientation = "horizontal" | "vertical";
 
 export interface SocialIconsProps {
   orientation: SocialOrientation;
   position?: SocialIconsPosition;
+  alignment?: SocialIconsAlignment;
 }

@@ -5,6 +5,7 @@ import { Fragment } from "react";
 import { theme } from "@styles";
 import { GlobalStyle } from "@styles";
 import translations from "@locales/fr-FR.json";
+import { ToastProvider } from "@context/ToastContext";
 
 export default function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   return (
@@ -15,7 +16,9 @@ export default function MyApp({ Component, pageProps }: AppProps): JSX.Element {
         messages={translations}
         textComponent={Fragment}
       >
-        <Component {...pageProps} />
+        <ToastProvider>
+          <Component {...pageProps} />
+        </ToastProvider>
       </IntlProvider>
     </ThemeProvider>
   );

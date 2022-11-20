@@ -3,17 +3,23 @@ import { MEDIA } from "@constants/layout";
 import styled, { css } from "styled-components";
 import { Link } from "@components/Link";
 
-export const BrandLink = styled(Link)`
+export const BrandLink = styled(Link)<{
+  customColor?: string;
+}>`
   position: absolute;
   top: 32px;
 
   font-size: 48px;
   min-width: 100%;
   text-align: center;
-  color: ${(props) => props.theme.colors.pewter};
+  color: ${(props) => props.customColor ?? props.theme.colors.pewter};
   font-family: ${(props) => props.theme.fonts.oleoScript};
   &:hover {
     color: ${(props) => props.theme.colors.opal};
+  }
+
+  @media ${MEDIA.TABLET} {
+    margin-top: 32px;
   }
 `;
 
@@ -27,7 +33,6 @@ export const SectionWrapper = styled.section`
 
   @media ${MEDIA.TABLET} {
     grid-template-columns: 1fr;
-    height: none;
   }
 `;
 

@@ -28,7 +28,7 @@ export const FourOhFourScreen = (): JSX.Element => {
           {t({ id: "commons.brandName" })}
         </BrandLink>
         <Image src="/images/charlie-1.webp" alt="Thank you" />
-        <SocialIcons position="Right" orientation="Vertical" />
+        <SocialIcons position="right" orientation="vertical" />
       </SplitSection>
       <SplitSection innerBorder color="Green">
         <Container size="mobile">
