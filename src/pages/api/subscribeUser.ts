@@ -7,12 +7,15 @@ mailchimpClient.setConfig({
   server: process.env.MAILCHIMP_API_SERVER,
 });
 
-/**
- * 1. gather information from the front end (email and first name)
- * 2. send that information to mailchimp
- * 3. save the information in a db for our own data
- */
+interface MailChimpResponse {
+  status: Number;
+  response:  Response;
+}
 
+/**
+ * API endpoint to subscribe a user to the mailing list in Mailchimp
+ * Have to pass email and name in the body of the request.
+ */
 const subscribeUser =  async (req: NextApiRequest, res: NextApiResponse) => {
   const { email, name } = req.body;
 
@@ -33,9 +36,9 @@ const subscribeUser =  async (req: NextApiRequest, res: NextApiResponse) => {
     res.status(201)
   } catch (err) {
     // HACK: Type annotations not available yet in Typescript @see https://github.com/Microsoft/TypeScript/issues/20024
-    const error = err as any
-    console.log({ error: error.response.text as mailchimpClient.MemberErrorResponse })
-    res.status(400).json({ message: error.response.text })
+    const error = err as MailChimpResponse
+    console.log({ err: error.status, resp: error.response })
+    res.status(400).json({ message: error.response.body })
   }
 };
 

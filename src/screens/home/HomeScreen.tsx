@@ -10,7 +10,7 @@ import { Image } from "@components/Image";
 import { SocialIcons } from "@components/SocialIcons";
 import { Container } from "@components/Container";
 import { Form } from "@components/Form";
-import { Title } from "./HomeScreen.styles";
+import { Title, ToastLink } from "./HomeScreen.styles";
 import { Button } from "@components/Button";
 import { useTranslation } from "@hooks/useTranslation";
 import { InputText } from "@components/Inputs/InputText";
@@ -21,6 +21,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { TextSeparator } from "@components/TextSeparator";
 import { useMedia } from "react-use";
 import { useToast } from "@context/ToastContext";
+import { MailchimpErrors } from "types/errors";
 
 export const HomeScreen = (): JSX.Element | null => {
   const { t } = useTranslation();
@@ -96,22 +97,50 @@ export const HomeScreen = (): JSX.Element | null => {
             },
             method: 'POST',
           });
-          /**
-           * Show error messages per known error from server
-           * Show default error message if we don't know
-           */
+
           if (!response.ok) {
-            const resp = await response.json()
-            console.log({ response, message: resp.message })
-            addToast({
-              type: "Error",
-              /* TODO: make the generic error email a link */
-              toastMessage: "commons.genericError",
-            });
+            const { message } = await response.json()
+
+            switch (message.title) {
+              /* If a member already exists we don't want a random bot to know that so we return a valid message. */
+              case MailchimpErrors.MemberExists: {
+                addToast({
+                  type: "Active",
+                  toastMessage: {
+                    id: "commons.congratulations"
+                  },
+                });
+                reset({})
+                break;
+              };
+              default: {
+                addToast({
+                  type: "Error",
+                  /* TODO: make the generic error email a link */
+                  toastMessage: {
+                    id: "commons.genericError",
+                    variables: {
+                      email: (
+                        <ToastLink
+                          variant="Link"
+                          newTab
+                          href="mailto:hello@charlies-closet.com"
+                        >
+                          hello@charlies-closet.com
+                        </ToastLink>
+                      )
+                    }
+                  },
+                });
+                break;
+              }
+            }
           } else {
             addToast({
               type: "Active",
-              toastMessage: "commons.congratulations",
+              toastMessage: {
+                id: "commons.congratulations"
+              },
             });
           }
         },
@@ -119,13 +148,15 @@ export const HomeScreen = (): JSX.Element | null => {
           /* Note: The error is triggered here by missing/bad input */ 
           addToast({
             type: "Error",
-            toastMessage: "commons.missingInfoError",
+            toastMessage: {
+              id: "commons.missingInfoError"
+            },
           });
           console.log({ error })
         }
       )();
     },
-    [addToast, handleSubmit]
+    [addToast, handleSubmit, reset]
   );
 
   if (isMobile) {

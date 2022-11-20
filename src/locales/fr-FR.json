@@ -17,7 +17,7 @@
   "commons.next": "Suivant",
   "commons.email": "Email",
   "commons.gender": "Genre",
-  "commons.genericError": "Veuillez nous contacter a hello@charlies-closet.com",
+  "commons.genericError": "Veuillez nous contacter a {email}",
   "commons.missingInfoError": "Veuillez fournir les informations necessaires",
   "commons.included": "inclus",
   "commons.invalidEmail": "Adresse mail invalide",

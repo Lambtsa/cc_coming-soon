@@ -1,5 +1,5 @@
 import { Toast } from "@components/Toast";
-import { ToastType } from "@components/Toast/Toast.types";
+import { ToastMessage, ToastType } from "@components/Toast/Toast.types";
 import {
   createContext,
   useState,
@@ -7,7 +7,6 @@ import {
   useContext,
   useCallback,
 } from "react";
-import { TranslationKey } from "@customTypes";
 
 interface ToastContextShape {
   addToast: (props: AddToastProps) => void;
@@ -19,14 +18,14 @@ interface ToastProviderProps {
 
 interface AddToastProps {
   type: ToastType;
-  toastMessage: TranslationKey;
+  toastMessage: ToastMessage;
 }
 
 const ToastContext = createContext<ToastContextShape | undefined>(undefined);
 
 const ToastProvider = ({ children }: ToastProviderProps) => {
   const [toastType, setToastType] = useState<ToastType>("Active");
-  const [toastMessage, setToastMessage] = useState<TranslationKey>();
+  const [toastMessage, setToastMessage] = useState<ToastMessage>();
   const [isOpen, setIsOpen] = useState(false);
 
   const addToast = useCallback(({ type, toastMessage }: AddToastProps) => {
@@ -53,7 +52,7 @@ const ToastProvider = ({ children }: ToastProviderProps) => {
 
   return (
     <ToastContext.Provider value={validationState}>
-      {isOpen && (
+      {isOpen && toastMessage && (
         <Toast message={toastMessage} type={toastType} onClose={onClose} />
       )}
       {children}
