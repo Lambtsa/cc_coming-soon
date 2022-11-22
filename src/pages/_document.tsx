@@ -1,7 +1,39 @@
+import type { DocumentContext } from "next/document";
 import Document, { Head, Html, Main, NextScript } from "next/document";
+import { JSXElementConstructor, ReactElement, ReactFragment } from "react";
+import { ServerStyleSheet } from "styled-components";
 
-export default class MyDocument extends Document { 
-  render(): JSX.Element {
+export default class MyDocument extends Document {
+  /**
+   * Add styled-components server-side render support
+   * Taken from https://github.com/vercel/next.js/blob/canary/examples/with-styled-components/pages/_document.tsx
+   */
+  static async getInitialProps(ctx: DocumentContext): Promise<{
+    styles: ReactFragment | ReactElement<any, string | JSXElementConstructor<any>>[];
+    html: string;
+    head?: (JSX.Element | null)[] | undefined;
+  }> {
+    const sheet = new ServerStyleSheet()
+    const originalRenderPage = ctx.renderPage
+
+    try {
+      ctx.renderPage = () =>
+        originalRenderPage({
+          enhanceApp: (App) => (props) =>
+            sheet.collectStyles(<App {...props} />),
+        })
+
+      const initialProps = await Document.getInitialProps(ctx)
+      return {
+        ...initialProps,
+        styles: [initialProps.styles, sheet.getStyleElement()],
+      }
+    } finally {
+      sheet.seal()
+    }
+  }
+
+  public render(): JSX.Element {
     return (
       <Html>
         <Head>

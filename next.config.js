@@ -62,7 +62,7 @@ const config = withPlugins(nextPlugins, {
       // Defaults to ["index"].
       // meaninglessFileNames: [],
       // Enabled by default.
-      // cssProp: false,
+      cssProp: true,
       // Empty by default.
       // namespace: false,
       // Not supported yet.
