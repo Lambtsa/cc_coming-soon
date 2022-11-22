@@ -14,7 +14,12 @@
     "lint:tsc": "tsc --noEmit --project tsconfig.json",
     "prepare": "husky install",
     "test": "jest src",
-    "test:watch": "npm run test -- --watch --verbose"
+    "test:watch": "npm run test -- --watch --verbose",
+    "remote:restart": "bash ./deploy/restart.sh",
+    "remote:destroy": "bash ./deploy/delete.sh",
+    "remote:start": "bash ./deploy/start.sh",
+    "remote:deploy": "bash ./deploy/deploy.sh",
+    "deploy": "npm run build && npm run remote:deploy && npm run remote:restart"
   },
   "dependencies": {
     "@hookform/resolvers": "2.9.10",
