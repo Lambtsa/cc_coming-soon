@@ -19,6 +19,7 @@
   "commons.gender": "Genre",
   "commons.genericError": "Veuillez nous contacter a {email}",
   "commons.missingInfoError": "Veuillez fournir les informations necessaires",
+  "commons.invalidEmailError": "Veuillez fournir une adresse mail valide",
   "commons.included": "inclus",
   "commons.invalidEmail": "Adresse mail invalide",
   "commons.invalidName": "Veuillez entrer votre prénom",

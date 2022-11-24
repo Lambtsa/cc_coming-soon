@@ -42,6 +42,7 @@ export const SocialIcons = ({
       {socialMediaLinks &&
         socialMediaLinks.map((icon) => (
           <Link
+            aria-label={icon.name}
             variant="Link"
             newTab
             key={`${icon.name}-${uuid()}`}

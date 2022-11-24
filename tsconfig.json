@@ -37,6 +37,10 @@
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true
   },
+  // @see https://docs.sentry.io/platforms/javascript/sourcemaps/uploading/typescript/
+  "sourceMap": true,
+  "inlineSources": true,
+  "sourceRoot": "/",
   "include": [
     "next-env.d.ts",
     "next.config.js",

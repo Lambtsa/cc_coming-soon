@@ -1,4 +1,5 @@
 export enum MailchimpErrors {
   MemberExists = "Member Exists",
-  MissingEmail = "Missing Email"
+  MissingEmail = "Missing Email",
+  InvalidResource = "Invalid Resource"
 }

@@ -14,6 +14,7 @@ export interface ControlledRadioProps<
 > extends InputRadioProps {
   control: Control<TFieldValues, object>;
   name: TName;
+  accessibilityName: string;
   setValue: UseFormSetValue<TFieldValues>;
 }
 

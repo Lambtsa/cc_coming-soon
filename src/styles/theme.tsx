@@ -32,7 +32,7 @@ const colors = {
   petiteOrchid30: "rgba(221, 159, 147, 0.3)",
   petiteOrchid20: "rgba(221, 159, 147, 0.2)",
   petiteOrchid10: "rgba(221, 159, 147, 0.1)",
-  pewter: "#96AFA7",
+  pewter: "#73968B",
   sandyBrown: "#F0A44B",
   quickSand: "#BFA49A",
   white: "#FFFFFF",

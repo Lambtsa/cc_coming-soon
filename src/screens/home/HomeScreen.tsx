@@ -113,6 +113,16 @@ export const HomeScreen = (): JSX.Element | null => {
                 reset({})
                 break;
               };
+              case MailchimpErrors.InvalidResource: {
+                addToast({
+                  type: "Error",
+                  toastMessage: {
+                    id: "commons.invalidEmailError"
+                  },
+                });
+                reset({})
+                break;
+              };
               default: {
                 addToast({
                   type: "Error",
@@ -186,6 +196,7 @@ export const HomeScreen = (): JSX.Element | null => {
                 error={formErrors.email}
               />
               <InputRadio
+                accessibilityName="toggle accept conditions"
                 setValue={setValue}
                 control={control}
                 name="hasAcceptedConditions"
@@ -239,6 +250,7 @@ export const HomeScreen = (): JSX.Element | null => {
               error={formErrors.email}
             />
             <InputRadio
+              accessibilityName="toggle accept conditions"
               setValue={setValue}
               control={control}
               name="hasAcceptedConditions"

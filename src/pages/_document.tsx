@@ -35,7 +35,7 @@ export default class MyDocument extends Document {
 
   public render(): JSX.Element {
     return (
-      <Html>
+      <Html lang="fr">
         <Head>
           <link
             href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Oleo+Script:wght@400;700&display=swap"
@@ -46,8 +46,6 @@ export default class MyDocument extends Document {
           <link rel="canonical" href="https://www.charlies-closet.com" />
           <link rel="icon" href="/favicon.ico" />
           <link rel="apple-touch-icon" href="/logo192.png" />
-          {/* enable google analytics script */}
-          {/* TODO: add preconnect to google.tagmanager.com */}
           <script
             async
             src={`https://www.googletagmanager.com/gtag/js?id=${process.env.gaTrackingId}`}

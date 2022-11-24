@@ -18,6 +18,7 @@ export const InputRadio = <
   TName extends Path<TFieldValues> = Path<TFieldValues>
 >({
   control,
+  accessibilityName,
   name,
   error,
   label,
@@ -45,6 +46,7 @@ export const InputRadio = <
   return (
     <InputRadioWrapper>
       <InputRadioBtn
+        aria-label={accessibilityName}
         error={!!error}
         onClick={handleOnClick}
         active={active}

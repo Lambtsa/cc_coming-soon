@@ -18,8 +18,8 @@ export const MetaData = ({
       <meta property="og:image" content="/og-image.png" />
       <meta property="og:url" content={url} />
       <meta property="og:site_name" content={title} />
-      {/* <meta name="robots" content="index, follow" /> */}
-      {/* <meta name="googlebot" content="index, follow" /> */}
+      <meta name="robots" content="index, follow" />
+      <meta name="googlebot" content="index, follow" />
     </Head>
   );
 };

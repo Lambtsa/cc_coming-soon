@@ -11,6 +11,7 @@ export const BrandLink = styled(Link)<{
 
   font-size: 48px;
   min-width: 100%;
+  padding: 0 15px;
   text-align: center;
   color: ${(props) => props.customColor ?? props.theme.colors.pewter};
   font-family: ${(props) => props.theme.fonts.oleoScript};
