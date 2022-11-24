@@ -23,5 +23,5 @@ export const ToastLink = styled(Link)`
   text-align: left;
   text-decoration: underline;
   font-size: 14px;
-  line-height: 24px; 
+  line-height: 24px;
 `;

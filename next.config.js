@@ -24,11 +24,19 @@ const sentryWebpackPluginOptions = {
 
 const nextPlugins = [
   (nextConfig) => withSentryConfig(nextConfig, sentryWebpackPluginOptions),
-]
+];
 
 const config = withPlugins(nextPlugins, {
   // Enable <React.StrictMode> in application
   reactStrictMode: true,
+
+  // experimental: {
+  //   concurrentFeatures: true,
+  // },
+  // react: {
+  //   useSuspense: false,
+  //   wait: true,
+  // },
 
   fileExtensions: ["jpg", "jpeg", "png", "gif"],
 

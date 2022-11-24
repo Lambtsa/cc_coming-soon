@@ -1,5 +1,9 @@
 import styled, { css } from "styled-components";
-import { SocialIconsAlignment, SocialIconsPosition, SocialOrientation } from "./SocialIcons.types";
+import {
+  SocialIconsAlignment,
+  SocialIconsPosition,
+  SocialOrientation,
+} from "./SocialIcons.types";
 
 export const SocialIconsWrapper = styled.div<{
   orientation: SocialOrientation;
@@ -12,11 +16,11 @@ export const SocialIconsWrapper = styled.div<{
       case "top":
         return css`
           top: 16px;
-        `
+        `;
       case "bottom":
         return css`
           bottom: 16px;
-        `
+        `;
       default:
         return;
     }
@@ -37,7 +41,7 @@ export const SocialIconsWrapper = styled.div<{
           /* position: absolute; */
           left: 50%;
           right: 50%;
-        `
+        `;
       default:
         return;
     }

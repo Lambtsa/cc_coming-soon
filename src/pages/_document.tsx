@@ -9,27 +9,29 @@ export default class MyDocument extends Document {
    * Taken from https://github.com/vercel/next.js/blob/canary/examples/with-styled-components/pages/_document.tsx
    */
   static async getInitialProps(ctx: DocumentContext): Promise<{
-    styles: ReactFragment | ReactElement<any, string | JSXElementConstructor<any>>[];
+    styles:
+      | ReactFragment
+      | ReactElement<any, string | JSXElementConstructor<any>>[];
     html: string;
     head?: (JSX.Element | null)[] | undefined;
   }> {
-    const sheet = new ServerStyleSheet()
-    const originalRenderPage = ctx.renderPage
+    const sheet = new ServerStyleSheet();
+    const originalRenderPage = ctx.renderPage;
 
     try {
       ctx.renderPage = () =>
         originalRenderPage({
           enhanceApp: (App) => (props) =>
             sheet.collectStyles(<App {...props} />),
-        })
+        });
 
-      const initialProps = await Document.getInitialProps(ctx)
+      const initialProps = await Document.getInitialProps(ctx);
       return {
         ...initialProps,
         styles: [initialProps.styles, sheet.getStyleElement()],
-      }
+      };
     } finally {
-      sheet.seal()
+      sheet.seal();
     }
   }
 

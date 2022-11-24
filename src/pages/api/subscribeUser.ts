@@ -1,5 +1,5 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
-import { MailchimpErrors } from 'types/errors';
+import type { NextApiRequest, NextApiResponse } from "next";
+import { MailchimpErrors } from "types/errors";
 import mailchimpClient from "@mailchimp/mailchimp_marketing";
 
 mailchimpClient.setConfig({
@@ -9,14 +9,14 @@ mailchimpClient.setConfig({
 
 interface MailChimpResponse {
   status: Number;
-  response:  Response;
+  response: Response;
 }
 
 /**
  * API endpoint to subscribe a user to the mailing list in Mailchimp
  * Have to pass email and name in the body of the request.
  */
-const subscribeUser =  async (req: NextApiRequest, res: NextApiResponse) => {
+const subscribeUser = async (req: NextApiRequest, res: NextApiResponse) => {
   const { email, name } = req.body;
 
   if (!email || !name) {
@@ -25,20 +25,23 @@ const subscribeUser =  async (req: NextApiRequest, res: NextApiResponse) => {
 
   /* NOTE: What happens when the mailchimp request returns a 500 error?? */
   try {
-    await mailchimpClient.lists.addListMember(process.env.MAILCHIMP_AUDIENCE_ID, {
-      email_address: email,
-      status: "subscribed",
-      merge_fields: {
-        FNAME: name
-      },
-      language: "fr"
-    });
-    res.status(201)
+    await mailchimpClient.lists.addListMember(
+      process.env.MAILCHIMP_AUDIENCE_ID,
+      {
+        email_address: email,
+        status: "subscribed",
+        merge_fields: {
+          FNAME: name,
+        },
+        language: "fr",
+      }
+    );
+    res.status(201);
   } catch (err) {
     // HACK: Type annotations not available yet in Typescript @see https://github.com/Microsoft/TypeScript/issues/20024
-    const error = err as MailChimpResponse
-    console.log({ err: error.status, resp: error.response })
-    res.status(400).json({ message: error.response.body })
+    const error = err as MailChimpResponse;
+    console.log({ err: error.status, resp: error.response });
+    res.status(400).json({ message: error.response.body });
   }
 };
 

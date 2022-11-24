@@ -1,11 +1,6 @@
 import { useTranslation } from "@hooks/useTranslation";
 import { useCallback, useEffect, useState } from "react";
-import {
-  FieldValues,
-  Path,
-  PathValue,
-  useController,
-} from "react-hook-form";
+import { FieldValues, Path, PathValue, useController } from "react-hook-form";
 import {
   InputRadioBtn,
   InputRadioLabel,
@@ -36,11 +31,9 @@ export const InputRadio = <
 
   const handleOnClick = useCallback(() => {
     setActive(!active);
-    setValue(
-      name,
-      !active as PathValue<TFieldValues, TName>,
-      { shouldValidate: true }
-    );
+    setValue(name, !active as PathValue<TFieldValues, TName>, {
+      shouldValidate: true,
+    });
   }, [active, name, setValue]);
 
   return (

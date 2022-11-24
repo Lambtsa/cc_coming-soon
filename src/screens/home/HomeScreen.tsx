@@ -1,4 +1,4 @@
-import { FormEvent, useCallback, useEffect, useMemo } from "react";
+import React, { FormEvent, useCallback, useEffect, useMemo } from "react";
 import {
   BrandLink,
   SectionWrapper,
@@ -7,6 +7,11 @@ import { SplitSection } from "@components/SplitSection";
 import { routes } from "@helpers/routes";
 import * as z from "zod";
 import { Image } from "@components/Image";
+/* NOTE: Suspense not supported yet */
+// const Image = React.lazy(() =>
+//   import("@components/Image")
+//   .then(({ Image }) => ({ default: Image }))
+// )
 import { SocialIcons } from "@components/SocialIcons";
 import { Container } from "@components/Container";
 import { Form } from "@components/Form";
@@ -26,17 +31,19 @@ import { MailchimpErrors } from "types/errors";
 export const HomeScreen = (): JSX.Element | null => {
   const { t } = useTranslation();
   const { addToast } = useToast();
-  const isMobile = useMedia('(max-width: 768px)', false);
+  const isMobile = useMedia("(max-width: 768px)", false);
 
   /* ################################################## */
   /* Forms */
   /* ################################################## */
   /* TODO: add the email error message in french @see https://github.com/colinhacks/zod/blob/master/ERROR_HANDLING.md */
   const validationSchema = z.object({
-    email: z.string().email({ message: t({ id: "commons.invalidEmail"})}),
-    name: z.string({
-      required_error: t({ id: "commons.invalidName"}),
-    }).min(1),
+    email: z.string().email({ message: t({ id: "commons.invalidEmail" }) }),
+    name: z
+      .string({
+        required_error: t({ id: "commons.invalidName" }),
+      })
+      .min(1),
     hasAcceptedConditions: z.boolean().refine((val) => val === true, {
       message: t({ id: "error.signUp.acceptConditions" }),
     }),
@@ -48,7 +55,7 @@ export const HomeScreen = (): JSX.Element | null => {
     () => ({
       email: "",
       name: "",
-      hasAcceptedConditions: false
+      hasAcceptedConditions: false,
     }),
     []
   );
@@ -57,13 +64,7 @@ export const HomeScreen = (): JSX.Element | null => {
    * Options chosen
    * https://react-hook-form.com/api/useform/
    */
-  const {
-    control,
-    formState,
-    handleSubmit,
-    reset,
-    setValue,
-  } = useForm({
+  const { control, formState, handleSubmit, reset, setValue } = useForm({
     defaultValues,
     mode: "onChange",
     /* All errors from each field will be gathered */
@@ -72,8 +73,8 @@ export const HomeScreen = (): JSX.Element | null => {
   });
 
   const formErrors = useMemo(() => {
-    return formState.errors
-  }, [formState.errors])
+    return formState.errors;
+  }, [formState.errors]);
 
   useEffect(() => {
     reset(defaultValues, { keepDefaultValues: true });
@@ -87,19 +88,19 @@ export const HomeScreen = (): JSX.Element | null => {
       e?.preventDefault();
       handleSubmit(
         async (formFields) => {
-          const response = await fetch('/api/subscribeUser', {
+          const response = await fetch("/api/subscribeUser", {
             body: JSON.stringify({
               email: formFields.email,
-              name: formFields.name
+              name: formFields.name,
             }),
             headers: {
-              'Content-Type': 'application/json',
+              "Content-Type": "application/json",
             },
-            method: 'POST',
+            method: "POST",
           });
 
           if (!response.ok) {
-            const { message } = await response.json()
+            const { message } = await response.json();
 
             switch (message.title) {
               /* If a member already exists we don't want a random bot to know that so we return a valid message. */
@@ -107,22 +108,22 @@ export const HomeScreen = (): JSX.Element | null => {
                 addToast({
                   type: "Active",
                   toastMessage: {
-                    id: "commons.congratulations"
+                    id: "commons.congratulations",
                   },
                 });
-                reset({})
+                reset({});
                 break;
-              };
+              }
               case MailchimpErrors.InvalidResource: {
                 addToast({
                   type: "Error",
                   toastMessage: {
-                    id: "commons.invalidEmailError"
+                    id: "commons.invalidEmailError",
                   },
                 });
-                reset({})
+                reset({});
                 break;
-              };
+              }
               default: {
                 addToast({
                   type: "Error",
@@ -138,8 +139,8 @@ export const HomeScreen = (): JSX.Element | null => {
                         >
                           hello@charlies-closet.com
                         </ToastLink>
-                      )
-                    }
+                      ),
+                    },
                   },
                 });
                 break;
@@ -149,20 +150,20 @@ export const HomeScreen = (): JSX.Element | null => {
             addToast({
               type: "Active",
               toastMessage: {
-                id: "commons.congratulations"
+                id: "commons.congratulations",
               },
             });
           }
         },
         (error) => {
-          /* Note: The error is triggered here by missing/bad input */ 
+          /* Note: The error is triggered here by missing/bad input */
           addToast({
             type: "Error",
             toastMessage: {
-              id: "commons.missingInfoError"
+              id: "commons.missingInfoError",
             },
           });
-          console.log({ error })
+          console.log({ error });
         }
       )();
     },
@@ -213,11 +214,15 @@ export const HomeScreen = (): JSX.Element | null => {
                 {t({ id: "screen.subscribe.btn" })}
               </Button>
             </Form>
-            <SocialIcons position="center" orientation="horizontal" alignment="bottom" />
+            <SocialIcons
+              position="center"
+              orientation="horizontal"
+              alignment="bottom"
+            />
           </Container>
         </SplitSection>
       </SectionWrapper>
-    )
+    );
   }
 
   return (

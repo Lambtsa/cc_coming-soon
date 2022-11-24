@@ -18,7 +18,7 @@ export const FourOhFourScreen = (): JSX.Element => {
   const router = useRouter();
 
   const handleOnClick = useCallback(() => {
-    router.push(routes.index())
+    router.push(routes.index());
   }, [router]);
 
   return (
@@ -34,7 +34,12 @@ export const FourOhFourScreen = (): JSX.Element => {
         <Container size="mobile">
           <Title>{t({ id: "screen.fourOhFour.title" })}</Title>
           <ContentText>{t({ id: "screen.fourOhFour.subtitle" })}</ContentText>
-          <Button variant="Primary" themeColor="Beige/Red" fullwidth onClick={handleOnClick}>
+          <Button
+            variant="Primary"
+            themeColor="Beige/Red"
+            fullwidth
+            onClick={handleOnClick}
+          >
             {t({ id: "screen.fourOhFour.btnText" })}
           </Button>
         </Container>

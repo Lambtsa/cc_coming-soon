@@ -10,20 +10,15 @@ import {
 } from "./Toast.styles";
 import { ToastProps } from "./Toast.types";
 
-
-export const Toast = ({ 
-  type, 
-  message, 
-  onClose 
-}: ToastProps): JSX.Element => {
+export const Toast = ({ type, message, onClose }: ToastProps): JSX.Element => {
   const { t } = useTranslation();
-  const { variables } = message
+  const { variables } = message;
 
   return (
     <ToastWrapper type={type}>
       <InnerWrapper>
         {type === "Error" ? <WarningIcon /> : <InfoIcon />}
-        <ToastText>{t({ id: message.id }, {...variables})}</ToastText>
+        <ToastText>{t({ id: message.id }, { ...variables })}</ToastText>
         <CloseBtn onClick={onClose}>
           <CloseIcon />
         </CloseBtn>

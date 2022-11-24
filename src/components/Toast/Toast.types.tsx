@@ -4,13 +4,13 @@ import { ReactNode } from "react";
 export type ToastType = "Active" | "Pending" | "Error";
 
 export interface ToastMessage {
-  id: TranslationKey,
-  variables?: Record<string, ReactNode>
+  id: TranslationKey;
+  variables?: Record<string, ReactNode>;
 }
 
 export interface ToastProps {
   type: ToastType;
   message: ToastMessage;
-  passableData?: Record<string, ReactNode>
+  passableData?: Record<string, ReactNode>;
   onClose: () => void;
 }
