@@ -51,6 +51,7 @@
     "next-compose-plugins": "^2.2.1",
     "next-transpile-modules": "^10.0.0",
     "prettier": "^2.7.1",
-    "url-loader": "^4.1.1"
+    "url-loader": "^4.1.1",
+    "webpack-bundle-analyzer": "^4.7.0"
   }
 }

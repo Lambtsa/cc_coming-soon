@@ -1,5 +1,6 @@
 const withPlugins = require("next-compose-plugins");
 const { withSentryConfig } = require("@sentry/nextjs");
+const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 
 const isLocalLikeBuildEnv =
   !process.env.BUILD_ENV || process.env.BUILD_ENV === "local";
@@ -85,10 +86,23 @@ const config = withPlugins(nextPlugins, {
   webpack(config) {
     // config.resolve.alias["config/env"] = configPath;
 
-    config.module.rules.push({
-      test: /\.svg$/,
-      use: ["@svgr/webpack", "url-loader"],
-    });
+    webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
+      if (ANALYZE) {
+      }
+      return config;
+    },
+      config.module.rules.push({
+        test: /\.svg$/,
+        use: ["@svgr/webpack", "url-loader"],
+      });
+
+    config.plugins.push(
+      new BundleAnalyzerPlugin({
+        analyzerMode: "server",
+        analyzerPort: 8080,
+        openAnalyzer: true,
+      })
+    );
 
     // config.env = {
     //   gaTrackingId: ""
@@ -98,5 +112,4 @@ const config = withPlugins(nextPlugins, {
   },
 });
 
-// module.exports = withSentryConfig(config, sentryWebpackPluginOptions);
 module.exports = config;
