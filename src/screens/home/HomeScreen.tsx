@@ -7,7 +7,7 @@ import { SplitSection } from "@components/SplitSection";
 import { routes } from "@helpers/routes";
 import * as z from "zod";
 import { Image } from "@components/Image";
-/* NOTE: Suspense not supported yet */
+/* Adding Suspense for Images */
 // const Image = React.lazy(() =>
 //   import("@components/Image")
 //   .then(({ Image }) => ({ default: Image }))
@@ -27,6 +27,7 @@ import { TextSeparator } from "@components/TextSeparator";
 import { useMedia } from "react-use";
 import { useToast } from "@context/ToastContext";
 import { MailchimpErrors } from "types/errors";
+// import { Loader } from "@components/Loader";
 // import type { GetServerSideProps } from "next/types";
 
 export const HomeScreen = (): JSX.Element | null => {
@@ -232,7 +233,9 @@ export const HomeScreen = (): JSX.Element | null => {
         <BrandLink variant="Link" href={routes.index()}>
           {t({ id: "commons.brandName" })}
         </BrandLink>
+        {/* <Suspense fallback={<Loader />}> */}
         <Image src="/images/charlie-1.webp" alt="Thank you" />
+        {/* </Suspense> ; */}
         <SocialIcons position="right" orientation="vertical" />
       </SplitSection>
       <SplitSection innerBorder color="Green">

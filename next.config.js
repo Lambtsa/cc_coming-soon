@@ -30,14 +30,8 @@ const nextPlugins = [
 const config = withPlugins(nextPlugins, {
   // Enable <React.StrictMode> in application
   reactStrictMode: true,
-
-  // experimental: {
-  //   concurrentFeatures: true,
-  // },
-  // react: {
-  //   useSuspense: false,
-  //   wait: true,
-  // },
+  // Enable concurrent mode @see https://learnjsx.com/category/4/posts/nextjs-suspense
+  concurrentFeatures: true,
 
   fileExtensions: ["jpg", "jpeg", "png", "gif"],
 
