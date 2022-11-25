@@ -9,6 +9,7 @@ import {
 } from "@components/SplitSection/SplitSection.styles";
 import { routes } from "@helpers/routes";
 import { useTranslation } from "@hooks/useTranslation";
+import type { GetStaticProps } from "next/types";
 import { useRouter } from "next/router";
 import { useCallback } from "react";
 import { ContentText, Title } from "./FiveOhOh.styles";
@@ -46,4 +47,10 @@ export const FiveOhOhScreen = (): JSX.Element => {
       </SplitSection>
     </SectionWrapper>
   );
+};
+
+export const getStaticProps: GetStaticProps = async () => {
+  return {
+    props: {},
+  };
 };

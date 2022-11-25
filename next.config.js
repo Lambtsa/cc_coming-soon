@@ -86,23 +86,14 @@ const config = withPlugins(nextPlugins, {
   webpack(config) {
     // config.resolve.alias["config/env"] = configPath;
 
-    webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
-      if (ANALYZE) {
-      }
-      return config;
-    },
-      config.module.rules.push({
-        test: /\.svg$/,
-        use: ["@svgr/webpack", "url-loader"],
-      });
+    // config.plugins.push(
+    //   new BundleAnalyzerPlugin()
+    // );
 
-    config.plugins.push(
-      new BundleAnalyzerPlugin({
-        analyzerMode: "server",
-        analyzerPort: 8080,
-        openAnalyzer: true,
-      })
-    );
+    config.module.rules.push({
+      test: /\.svg$/,
+      use: ["@svgr/webpack", "url-loader"],
+    });
 
     // config.env = {
     //   gaTrackingId: ""
