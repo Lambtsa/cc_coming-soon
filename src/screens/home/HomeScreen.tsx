@@ -27,7 +27,7 @@ import { TextSeparator } from "@components/TextSeparator";
 import { useMedia } from "react-use";
 import { useToast } from "@context/ToastContext";
 import { MailchimpErrors } from "types/errors";
-import type { GetServerSideProps } from "next/types";
+// import type { GetServerSideProps } from "next/types";
 
 export const HomeScreen = (): JSX.Element | null => {
   const { t } = useTranslation();
@@ -279,8 +279,8 @@ export const HomeScreen = (): JSX.Element | null => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async () => {
-  return {
-    props: {},
-  };
-};
+// export const getServerSideProps: GetServerSideProps = async () => {
+//   return {
+//     props: {},
+//   };
+// };

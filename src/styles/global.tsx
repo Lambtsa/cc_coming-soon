@@ -3,7 +3,7 @@ import { createGlobalStyle } from "styled-components";
 export const GlobalStyle = createGlobalStyle`
   *, *::before, *::after {
     box-sizing: border-box;
-    font-family: 'Noto Serif', serif;
+    font-family: 'Noto Sans', sans-serif;
     font-size: 16px;
     margin: 0;
     padding: 0;
