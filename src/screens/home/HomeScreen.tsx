@@ -1,4 +1,5 @@
 import React, { FormEvent, useCallback, useEffect, useMemo } from "react";
+import dynamic from "next/dynamic";
 import {
   BrandLink,
   SectionWrapper,
@@ -6,8 +7,12 @@ import {
 import { SplitSection } from "@components/SplitSection";
 import { routes } from "@helpers/routes";
 import * as z from "zod";
-import { Image } from "@components/Image";
-/* Adding Suspense for Images */
+// import { Image } from "@components/Image";
+
+/* Dynamic import for Images */
+const Image = dynamic(() =>
+  import("@components/Image").then(({ Image }) => Image)
+);
 // const Image = React.lazy(() =>
 //   import("@components/Image")
 //   .then(({ Image }) => ({ default: Image }))
