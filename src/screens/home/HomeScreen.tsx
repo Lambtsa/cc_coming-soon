@@ -7,16 +7,10 @@ import {
 import { SplitSection } from "@components/SplitSection";
 import { routes } from "@helpers/routes";
 import * as z from "zod";
-// import { Image } from "@components/Image";
-
-/* Dynamic import for Images */
+/* Dynamic imports */
 const Image = dynamic(() =>
   import("@components/Image").then(({ Image }) => Image)
 );
-// const Image = React.lazy(() =>
-//   import("@components/Image")
-//   .then(({ Image }) => ({ default: Image }))
-// )
 import { SocialIcons } from "@components/SocialIcons";
 import { Container } from "@components/Container";
 import { Form } from "@components/Form";
@@ -32,8 +26,6 @@ import { TextSeparator } from "@components/TextSeparator";
 import { useMedia } from "react-use";
 import { useToast } from "@context/ToastContext";
 import { MailchimpErrors } from "types/errors";
-// import { Loader } from "@components/Loader";
-// import type { GetServerSideProps } from "next/types";
 
 export const HomeScreen = (): JSX.Element | null => {
   const { t } = useTranslation();
@@ -286,9 +278,3 @@ export const HomeScreen = (): JSX.Element | null => {
     </SectionWrapper>
   );
 };
-
-// export const getServerSideProps: GetServerSideProps = async () => {
-//   return {
-//     props: {},
-//   };
-// };

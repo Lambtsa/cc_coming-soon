@@ -1,6 +1,11 @@
 import { NextWebVitalsMetric } from "next/app";
 
+const isProduction = process.env.NODE_ENV === "production";
+
 export const reportWebVitals = (metric: NextWebVitalsMetric) => {
+  if (isProduction) {
+    return;
+  }
   switch (metric.name) {
     case "CLS": {
       console.log({ cumulativeLayoutShift: metric.value });
