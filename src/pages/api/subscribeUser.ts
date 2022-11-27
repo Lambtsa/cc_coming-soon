@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { MailchimpErrors } from "types/errors";
 import mailchimpClient from "@mailchimp/mailchimp_marketing";
+import { validateInput } from "@helpers/zod";
 
 mailchimpClient.setConfig({
   apiKey: process.env.MAILCHIMP_API_KEY,
@@ -18,6 +19,14 @@ interface MailChimpResponse {
  */
 const subscribeUser = async (req: NextApiRequest, res: NextApiResponse) => {
   const { email, name } = req.body;
+
+  if (req.method !== "POST") {
+    return res.status(405);
+  }
+
+  if (!validateInput({ email, name })) {
+    return res.status(400).json({ error: MailchimpErrors.InvalidResource });
+  }
 
   if (!email || !name) {
     return res.status(400).json({ error: MailchimpErrors.MissingEmail });

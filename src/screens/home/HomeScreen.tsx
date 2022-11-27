@@ -37,12 +37,16 @@ export const HomeScreen = (): JSX.Element | null => {
   /* ################################################## */
   /* TODO: add the email error message in french @see https://github.com/colinhacks/zod/blob/master/ERROR_HANDLING.md */
   const validationSchema = z.object({
-    email: z.string().email({ message: t({ id: "commons.invalidEmail" }) }),
+    email: z
+      .string()
+      .email({ message: t({ id: "commons.invalidEmail" }) })
+      .trim(),
     name: z
       .string({
         required_error: t({ id: "commons.invalidName" }),
       })
-      .min(1),
+      .min(1)
+      .trim(),
     hasAcceptedConditions: z.boolean().refine((val) => val === true, {
       message: t({ id: "error.signUp.acceptConditions" }),
     }),
