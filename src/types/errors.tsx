@@ -3,3 +3,10 @@ export enum MailchimpErrors {
   MissingEmail = "Missing Email",
   InvalidResource = "Invalid Resource",
 }
+
+export interface ErrorResponseMailChimp {
+  title: MailchimpErrors;
+  status: number;
+  detail: string;
+  instance: string;
+}

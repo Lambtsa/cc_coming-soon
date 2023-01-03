@@ -8,11 +8,6 @@ mailchimpClient.setConfig({
   server: process.env.MAILCHIMP_API_SERVER,
 });
 
-interface MailChimpResponse {
-  status: Number;
-  response: Response;
-}
-
 /**
  * API endpoint to subscribe a user to the mailing list in Mailchimp
  * Have to pass email and name in the body of the request.
@@ -24,17 +19,17 @@ const subscribeUser = async (req: NextApiRequest, res: NextApiResponse) => {
     return res.status(405);
   }
 
-  if (!validateInput({ email, name })) {
-    return res.status(400).json({ error: MailchimpErrors.InvalidResource });
-  }
-
   if (!email || !name) {
     return res.status(400).json({ error: MailchimpErrors.MissingEmail });
   }
 
+  if (!validateInput({ email, name })) {
+    return res.status(400).json({ error: MailchimpErrors.InvalidResource });
+  }
+
   /* NOTE: What happens when the mailchimp request returns a 500 error?? */
   try {
-    await mailchimpClient.lists.addListMember(
+    const response = await mailchimpClient.lists.addListMember(
       process.env.MAILCHIMP_AUDIENCE_ID,
       {
         email_address: email,
@@ -45,12 +40,12 @@ const subscribeUser = async (req: NextApiRequest, res: NextApiResponse) => {
         language: "fr",
       }
     );
-    res.status(201);
+
+    console.log({ response });
+    res.status(201).send({});
   } catch (err) {
-    // HACK: Type annotations not available yet in Typescript @see https://github.com/Microsoft/TypeScript/issues/20024
-    const error = err as MailChimpResponse;
-    console.log({ err: error.status, resp: error.response });
-    res.status(400).json({ message: error.response.body });
+    console.log({ err });
+    res.status(400).send(err);
   }
 };
 

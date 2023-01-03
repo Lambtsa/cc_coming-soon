@@ -25,7 +25,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { TextSeparator } from "@components/TextSeparator";
 import { useMedia } from "react-use";
 import { useToast } from "@context/ToastContext";
-import { MailchimpErrors } from "types/errors";
+import { ErrorResponseMailChimp, MailchimpErrors } from "types/errors";
 
 export const HomeScreen = (): JSX.Element | null => {
   const { t } = useTranslation();
@@ -103,9 +103,12 @@ export const HomeScreen = (): JSX.Element | null => {
           });
 
           if (!response.ok) {
-            const { message } = await response.json();
+            const { response: resp } = await response.json();
+            const errorObj = JSON.parse(resp.text) as ErrorResponseMailChimp;
 
-            switch (message.title) {
+            console.log({ errorObj, resp });
+
+            switch (errorObj.title) {
               /* If a member already exists we don't want a random bot to know that so we return a valid message. */
               case MailchimpErrors.MemberExists: {
                 addToast({
