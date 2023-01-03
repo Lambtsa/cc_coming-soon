@@ -27,7 +27,6 @@ const subscribeUser = async (req: NextApiRequest, res: NextApiResponse) => {
     return res.status(400).json({ error: MailchimpErrors.InvalidResource });
   }
 
-  /* NOTE: What happens when the mailchimp request returns a 500 error?? */
   try {
     await mailchimpClient.lists.addListMember(
       process.env.MAILCHIMP_AUDIENCE_ID,
