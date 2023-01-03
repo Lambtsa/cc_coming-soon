@@ -106,8 +106,6 @@ export const HomeScreen = (): JSX.Element | null => {
             const { response: resp } = await response.json();
             const errorObj = JSON.parse(resp.text) as ErrorResponseMailChimp;
 
-            console.log({ errorObj, resp });
-
             switch (errorObj.title) {
               /* If a member already exists we don't want a random bot to know that so we return a valid message. */
               case MailchimpErrors.MemberExists: {

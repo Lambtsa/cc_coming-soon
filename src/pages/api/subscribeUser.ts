@@ -29,7 +29,7 @@ const subscribeUser = async (req: NextApiRequest, res: NextApiResponse) => {
 
   /* NOTE: What happens when the mailchimp request returns a 500 error?? */
   try {
-    const response = await mailchimpClient.lists.addListMember(
+    await mailchimpClient.lists.addListMember(
       process.env.MAILCHIMP_AUDIENCE_ID,
       {
         email_address: email,
@@ -40,8 +40,6 @@ const subscribeUser = async (req: NextApiRequest, res: NextApiResponse) => {
         language: "fr",
       }
     );
-
-    console.log({ response });
     res.status(201).send({});
   } catch (err) {
     console.log({ err });
